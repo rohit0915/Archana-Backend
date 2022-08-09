@@ -1,0 +1,676 @@
+{
+	"info": {
+		"_postman_id": "ea5389bf-b4b3-4ddb-b992-0075b5206d41",
+		"name": "Archana",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21895982"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "sign up",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"email\":\"user1@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local3000}}/api/users/signup",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"email\":\"user1@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local3000}}/api/users/login",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "standard test results",
+					"item": [
+						{
+							"name": "depression (phq9)",
+							"item": [
+								{
+									"name": "current user result",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								},
+								{
+									"name": "update current user result",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5NzAzOTUxLCJleHAiOjE2NjA5OTk5NTF9.pXYDQAnekZc7Q-Qirt0uk6ZbpwdeeTPVvfz7xUq-CSw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"result\": 21\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{local3000}}/api/phq9-result",
+											"host": [
+												"{{local3000}}"
+											],
+											"path": [
+												"api",
+												"phq9-result"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "what score means",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5NzAzOTUxLCJleHAiOjE2NjA5OTk5NTF9.pXYDQAnekZc7Q-Qirt0uk6ZbpwdeeTPVvfz7xUq-CSw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"result\":21\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{local3000}}/api/what-score-means/phq9-result",
+											"host": [
+												"{{local3000}}"
+											],
+											"path": [
+												"api",
+												"what-score-means",
+												"phq9-result"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "anxiety (gad7)",
+							"item": [
+								{
+									"name": "current user result",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5NzAzOTUxLCJleHAiOjE2NjA5OTk5NTF9.pXYDQAnekZc7Q-Qirt0uk6ZbpwdeeTPVvfz7xUq-CSw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{local3000}}/api/gad7-result",
+											"host": [
+												"{{local3000}}"
+											],
+											"path": [
+												"api",
+												"gad7-result"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update current user result",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5NzAzOTUxLCJleHAiOjE2NjA5OTk5NTF9.pXYDQAnekZc7Q-Qirt0uk6ZbpwdeeTPVvfz7xUq-CSw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"result\": 20\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{local3000}}/api/gad7-result",
+											"host": [
+												"{{local3000}}"
+											],
+											"path": [
+												"api",
+												"gad7-result"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "what score means",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5NzAzOTUxLCJleHAiOjE2NjA5OTk5NTF9.pXYDQAnekZc7Q-Qirt0uk6ZbpwdeeTPVvfz7xUq-CSw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"result\": 20\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{local3000}}/api/what-score-means/gad7-result",
+											"host": [
+												"{{local3000}}"
+											],
+											"path": [
+												"api",
+												"what-score-means",
+												"gad7-result"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "school time stories",
+					"item": [
+						{
+							"name": "all school stories",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5Nzc5ODQ4LCJleHAiOjE2NjEwNzU4NDh9.zlKdp85SW5_NDyeHzgdtPhsILLcVVnJutQqLp3EmM4Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local3000}}/api/school-time-stories",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"school-time-stories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "school story by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5Nzc5ODQ4LCJleHAiOjE2NjEwNzU4NDh9.zlKdp85SW5_NDyeHzgdtPhsILLcVVnJutQqLp3EmM4Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local3000}}/api/school-time-stories/62ee3a4006092fe2b3b14855",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"school-time-stories",
+										"62ee3a4006092fe2b3b14855"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "answer school time story questions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZDBkODNjMzY5NTBjZmJjM2I0YTYxIiwiaWF0IjoxNjU5Nzc5ODQ4LCJleHAiOjE2NjEwNzU4NDh9.zlKdp85SW5_NDyeHzgdtPhsILLcVVnJutQqLp3EmM4Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"schoolStoryId\": \"62ee3a4006092fe2b3b14855\",\r\n    \"schoolStoryQuestionId\": \"62ee3a4006092fe2b3b14857\",\r\n    \"answer\": \"this is a test answer\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local3000}}/api/answers/school-time-stories",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"answers",
+										"school-time-stories"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "current user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlY2VmMzE0NWRlMjJjMzdmNDhjZWFmIiwiaWF0IjoxNjU5Njk0ODk3LCJleHAiOjE2NjA5OTA4OTd9.bT0r-TBsJvm7hD4JTrMkg2olFoQFRQTo_T8FSshXrhQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local3000}}/api/users/me",
+							"host": [
+								"{{local3000}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customize experience",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlY2VmMzE0NWRlMjJjMzdmNDhjZWFmIiwiaWF0IjoxNjU5Njk0ODk3LCJleHAiOjE2NjA5OTA4OTd9.bT0r-TBsJvm7hD4JTrMkg2olFoQFRQTo_T8FSshXrhQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": \"below 20\",\r\n    \"gender\": \"male\",\r\n    \"mood\": \"I am happy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local3000}}/api/users/me",
+							"host": [
+								"{{local3000}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save current location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlY2VmMzE0NWRlMjJjMzdmNDhjZWFmIiwiaWF0IjoxNjU5Njk0ODk3LCJleHAiOjE2NjA5OTA4OTd9.bT0r-TBsJvm7hD4JTrMkg2olFoQFRQTo_T8FSshXrhQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"latLng\":[28.535517, 77.391029]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local3000}}/api/users/save-location",
+							"host": [
+								"{{local3000}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"save-location"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "support ,terms, intros",
+			"item": [
+				{
+					"name": "start journey",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local3000}}/api/startJourney",
+							"host": [
+								"{{local3000}}"
+							],
+							"path": [
+								"api",
+								"startJourney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "privacy-policy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local3000}}/api/privacy-policy",
+							"host": [
+								"{{local3000}}"
+							],
+							"path": [
+								"api",
+								"privacy-policy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@example.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local3000}}/api/admin/register",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sign in",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@example.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local3000}}/api/admin/login",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "school time stories",
+					"item": [
+						{
+							"name": "add a story",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZTBmOGI5YzZhMGNhMTgxZjYxOWE4IiwiaWF0IjoxNjU5Nzc2MTAxLCJleHAiOjE2NjEwNzIxMDF9.SsR48bR8vDbl-xV73ba-1ECHi8lsca1vDXqu7cSly_A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Definite and Indefinite\",\r\n    \"description\": \"A distorted view\",\r\n    \"media\": \"public/audios/audio-1659779688953.mp3\",\r\n    \"story\": \"Next day in school the Math teacher Ms Sheila announces that she will start teaching Calculus early since there is a lot of course content to cover. Advik is both relieved and anxious. He has hope that maybe in school he will be able to understand better what his teac can't solve this assigned problem. I’ll feel comfortable only when I am able to understand everything at once like in Physics. Unknowns make me nervous.” Advik’s mind gets caught up in a flurry of worries\",\r\n    \"questions\": [\r\n        \"Where do you think Advik is getting stuck in this story?\",\r\n        \"\",\r\n        \"Identify Advik’s various thoughts and feelings in this story.\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local3000}}/api/admin/school-time-story",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"school-time-story"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "file upload",
+					"item": [
+						{
+							"name": "upload",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjJlZTBmOGI5YzZhMGNhMTgxZjYxOWE4IiwiaWF0IjoxNjU5Nzc2MTAxLCJleHAiOjE2NjEwNzIxMDF9.SsR48bR8vDbl-xV73ba-1ECHi8lsca1vDXqu7cSly_A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "audio",
+											"type": "file",
+											"src": "/C:/Users/Andriod/Downloads/iPhone Ringtone meloboom.mp3"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local3000}}/api/admin/file-upload",
+									"host": [
+										"{{local3000}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"file-upload"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
