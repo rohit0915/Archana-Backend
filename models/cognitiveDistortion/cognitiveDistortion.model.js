@@ -7,7 +7,8 @@ const strategySchema = require('./strategies.schema');
 const distortionSchema = new mongoose.Schema({
 
     title: {
-        type: String
+        type: String,
+        default: ''
     },
 
     media :{
@@ -15,7 +16,8 @@ const distortionSchema = new mongoose.Schema({
     },
 
     description: {
-        type: String
+        type: String,
+        default: ''
     },
 
     introduction: {
@@ -23,7 +25,8 @@ const distortionSchema = new mongoose.Schema({
     },
 
     story: {
-        type: String
+        type: String,
+        default:''
     },
 
     questions: [

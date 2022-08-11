@@ -3,7 +3,8 @@ const exampleSchema = require('./example.schema');
 
 const explanationSchema = new mongoose.Schema({
     theory :{
-        type: String
+        type: String,
+        default: ''
     },
     examples:{
         type: exampleSchema

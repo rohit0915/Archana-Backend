@@ -2,6 +2,7 @@ const createError = require('http-errors');
 
 const CognitiveDistortion = require('../../models/cognitiveDistortion/cognitiveDistortion.model');
 const DistortionQuestion = require('../../models/cognitiveDistortion/distortionQuestion.model');
+const ExcerciseCognitiveDistortion = require('../../models/cognitiveDistortion/excercizes/excercize.model')
 
 exports.addDistortion = async (req,res,next) => {
     try {
@@ -45,7 +46,40 @@ exports.addDistortion = async (req,res,next) => {
 
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}
+
+exports.addDistortionExcercize = async (req,res,next) => {
+    try {
+        console.log('hit add distortion excercize by admin');
+        // console.log(req.body);
+
+        const {pattern,matchTheColumn1,matchTheColumn2,multipleChoiceQuestions} = req.body;
+        
+        const excercize = new ExcerciseCognitiveDistortion({
+            pattern,
+            matchTheColumn1,
+            matchTheColumn2,
+            multipleChoiceQuestions
+        })
+
+        const savedExcercize = await excercize.save();
+
+        if(!savedExcercize) return next(createError(400,'cannot save the excercize'))
+
         return res.status(200).json({
+            message: "excercize saved successfully",
+            savedExcercize
+        })
+
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })

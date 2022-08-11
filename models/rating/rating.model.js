@@ -7,13 +7,15 @@ const ratingSchema = new mongoose.Schema({
     },
     lessonId: {
         type: mongoose.Types.ObjectId,
-        ref: 'Lesson'
+        ref: 'Lesson',
+        required: true
     },
     tags: {
         type: [String]
     },
     rating: {
-        type: Number
+        type: Number,
+        max: 5
     },
     body: {
         type: String

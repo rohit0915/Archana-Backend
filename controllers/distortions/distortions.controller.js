@@ -1,7 +1,9 @@
 const createError = require('http-errors');
 
 const CognitiveDistortion = require('../../models/cognitiveDistortion/cognitiveDistortion.model');
-const User = require('../../models/user.model');
+const ExcerciseCognitiveDistortion = require('../../models/cognitiveDistortion/excercizes/excercize.model');
+const DistortionAnswer = require('../../models/cognitiveDistortion/distortionAnswer.model');
+const User = require('../../models/user.model');   
 
 exports.getAllDistortions = async (req,res,next) => {
     try {
@@ -19,7 +21,7 @@ exports.getAllDistortions = async (req,res,next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -44,7 +46,7 @@ exports.getDistortionById = async (req,res,next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -92,7 +94,7 @@ exports.updateDistortionUserProgress = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -121,7 +123,51 @@ exports.getDistortionProgress = async (req, res, next) => {
         }
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}
+
+exports.addAnswerToDistortionQuestion = async (req,res,next) => {
+    try {
+        console.log('hit user add answer to distortion question');
+        const {distortionId,distortionQuestionId,answer} = req.body;
+
+        const newAnswer = await DistortionAnswer.create({
+            answerBy: req.user,
+            distortionQuestionId,
+            distortionId,
+            answer
+        })
+
+        if(!newAnswer) return next(createError(400,'cannot save the answer'));
+
+        return res.status(200).json(newAnswer);
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}
+
+exports.getDistortionExcercize = async (req,res,next) => {
+    try {
+        console.log('hit user get cognitive distortion excercize');
+
+        const requiredExcercize = await ExcerciseCognitiveDistortion.find({});
+
+        if(!requiredExcercize) return next(createError(400,'cannot get the excercize'));
+
+        return res.status(200).json(requiredExcercize);
+    
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })

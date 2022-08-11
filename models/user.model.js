@@ -7,16 +7,16 @@ const lessonProgressSchema = require('./progressSchemas/lesson.progress.schema')
 const cognitiveDistortionProgressSchema = require('./progressSchemas/cognitiveDistortion.progress.schema');
 
 const userSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
-        lowercase:true,
+        lowercase: true,
         default: ''
     },
     mobile: {
         type: String,
         default: ''
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true
@@ -31,27 +31,27 @@ const userSchema = new mongoose.Schema({
         lowercase: true
         // below 20, 20-25, 25-30, 30-35, 35+
     },
-    gender:{
+    gender: {
         type: String,
         lowercase: true
         // male, female , other
     },
     moodToday: {
         type: String,
-        lowercase:true
+        lowercase: true
     },
-    agreeTermsPolicy:{
+    agreeTermsPolicy: {
         type: Boolean,
         default: true
     },
-    role:{
+    role: {
         type: String,
         default: 'user'
     },
-    currentLocation:{
+    currentLocation: {
         type: geo
     },
-    phq9Result:{
+    phq9Result: {
         // standard test for checking depression level  
         // this test have 9 Questions and min points for each question is 0 and max points is 3
         // more details :  https://www.hiv.uw.edu/page/mental-health-screening/gad-7
@@ -59,20 +59,25 @@ const userSchema = new mongoose.Schema({
         max: 27,
         default: 0
     },
-    gad7Result:{
+    gad7Result: {
         // standard test for checking anxiety level
         // this test have 7 Questions and min points for each question is 0 and max points is 3
         type: Number,
         max: 21,
         default: 0
     },
-    schoolStoryProgress:[schoolStoryProgressSchema],   //// type is array of schoolStoryProgressSchema
+    schoolStoryProgress: [schoolStoryProgressSchema],   //// type is array of schoolStoryProgressSchema
 
     lessonProgress: [lessonProgressSchema],
 
-    congnitiveDistortionProgress:[cognitiveDistortionProgressSchema],
+    congnitiveDistortionProgress: [cognitiveDistortionProgressSchema],
 
     numLessonCompleted: {
+        type: Number,
+        default: 0
+    },
+
+    numCognitiveDistortionCompleted: {
         type: Number,
         default: 0
     },
@@ -84,12 +89,12 @@ const userSchema = new mongoose.Schema({
 
 })
 
-userSchema.methods.genPassword = async function(passwordText){
-    return bcrypt.hash(passwordText,10)
+userSchema.methods.genPassword = async function (passwordText) {
+    return bcrypt.hash(passwordText, 10)
 }
 
-userSchema.methods.checkPassword = async function(passwordText,hashedPassword){
-    return bcrypt.compare(passwordText,hashedPassword);
+userSchema.methods.checkPassword = async function (passwordText, hashedPassword) {
+    return bcrypt.compare(passwordText, hashedPassword);
 }
 
-module.exports = mongoose.model('User',userSchema);
+module.exports = mongoose.model('User', userSchema);

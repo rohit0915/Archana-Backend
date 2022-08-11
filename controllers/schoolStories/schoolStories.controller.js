@@ -22,7 +22,7 @@ exports.getAllSchoolStories = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -48,7 +48,7 @@ exports.getSchoolStoriesById = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -81,7 +81,7 @@ exports.addAnswerToStoryQuestion = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -129,7 +129,7 @@ exports.updateSchoolStoryUserProgress = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -156,7 +156,7 @@ exports.getSchoolTimeStoryProgress = async (req, res, next) => {
         }
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })

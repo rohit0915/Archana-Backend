@@ -4,7 +4,8 @@ const exampleSchema = require('./example.schema');
 
 const strategySchema = new mongoose.Schema({
     intro:{
-        type: String
+        type: String,
+        default: ''
     },
     differentStrategies: [
         {

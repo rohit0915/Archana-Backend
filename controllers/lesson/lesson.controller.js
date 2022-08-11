@@ -78,7 +78,7 @@ exports.addAnswerToLessonQuestion = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -127,7 +127,7 @@ exports.updateLessonUserProgress = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
@@ -155,7 +155,33 @@ exports.getLessonProgress = async (req, res, next) => {
         }
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}
+
+exports.completedAllLessons = async (req,res,next) => {
+    try {
+        console.log('hit completed all lessons');
+
+        const user = await User.findById(req.user);
+
+        if (user.numLessonCompleted >= 8 && user.allLessonCompleted === false) {
+            user.allLessonCompleted = true;
+            await user.save({validateBeforeSave: false});
+
+            return res.status(200).json({
+                message: `congrats ${user.email}, you successfully cmpleted all lessons `
+            })
+        }else{
+            return next(createError(400,'please complete all lessons first and do remember to rate all the lessons after completion'));
+        }
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })

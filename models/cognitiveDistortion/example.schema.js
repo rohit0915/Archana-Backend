@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const exampleSchema = new mongoose.Schema({
     heading: {
-        type: String
+        type: String,
+        default: ''
     },
     points:{
         type: [String]

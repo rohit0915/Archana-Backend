@@ -14,7 +14,7 @@ exports.fileUpload = async (req, res, next) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(200).json({
+        return res.status(500).json({
             errorName: error.name,
             message: error.message
         })
