@@ -82,6 +82,25 @@ exports.addLesson = async (req, res, next) => {
     }
 }
 
+exports.getAllLessons = async (req, res, next) => {
+    try {
+        console.log('hit admin get all lessons');
+
+        const lessons = await Lesson.find({}).select('title description');
+
+        if (!lessons) return next(createError(400, 'cannot get all lessons'));
+
+        return res.status(200).json(lessons);
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}
+
 exports.getLessonById = async (req, res, next) => {
     try {
 
@@ -107,4 +126,56 @@ exports.getLessonById = async (req, res, next) => {
             message: error.message
         })
     }
-} 
+}
+
+exports.editLessonById = async (req, res, next) => {
+    try {
+        console.log('hit admin edit lesson by id');
+
+        if (Object.keys(req.body).length === 0) return next(createError(400, 'empty body received'))
+
+        const { lessonId } = req.params;
+
+        const { title, description, media } = req.body;
+
+        const update = {
+            title,
+            description,
+            media
+        }
+
+        const updated = await Lesson.findByIdAndUpdate(lessonId, update, { new: true, runValidators: true });
+
+        if (!updated) return next(createError(400, 'cannot update the lesson'));
+
+        return res.status(200).json(updated);
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}
+
+exports.deleteLessonById = async (req,res,next) => {
+    try {
+        console.log('hit admin delete the lesson by id ');
+        
+        const { lessonId } = req.params;
+
+        const deleted = await Lesson.findByIdAndDelete(lessonId);
+
+        if(!deleted) return next(createError(400,'cannot delete the lesson'));
+
+        return res.status(200).json({message:'deletion successfull'});
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}

@@ -4,6 +4,8 @@ const User = require('../../models/user.model');
 
 const { genToken } = require('../../middlewares/jwt');
 
+const Diary = require('../../models/diary/diary.model');
+
 exports.userSignUp = async (req, res, next) => {
     try {
 
@@ -58,9 +60,26 @@ exports.userLogin = async (req, res, next) => {
         if (loggingInUser && loggingInUser.checkPassword(password, loggingInUser.password)) {
             const token = await genToken(loggingInUser._id);
 
+            let isHavingDiary;
+            let reasonForNotCreatingDiary = null;
+            if (await Diary.findOne({diaryIsOfUser: loggingInUser._id, date: new Date().toLocaleDateString()}) && loggingInUser.numLessonCompleted >= 2  ) {
+                isHavingDiary = true;
+            } else {
+                isHavingDiary= false;
+
+                if (loggingInUser.numLessonCompleted >= 2) {
+                    await Diary.create({
+                        diaryIsOfUser : loggingInUser._id
+                    });
+                } else {
+                    reasonForNotCreatingDiary = "user not completed the 2 lessons";    
+                }
+            }
             if (token) {
                 return res.status(200).json({
-                    token
+                    token,
+                    isHavingDiary,
+                    reasonForNotCreatingDiary
                 })
             } else {
                 return next(createError(400, 'cannot generate the token'))

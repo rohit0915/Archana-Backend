@@ -7,14 +7,14 @@ exports.getCurrentUser = async (req, res, next) => {
         console.log('hit get current logged in user');
 
         const currentUser = await User.findById(req.user).populate({
-            path:'lessonProgress.lessonId',
+            path: 'lessonProgress.lessonId',
             select: 'title'
         }).populate({
             path: 'congnitiveDistortionProgress.distortionId',
-            select:'title'
+            select: 'title'
         }).populate({
             path: 'schoolStoryProgress.schoolStoryId',
-            select:'title'
+            select: 'title'
         });
 
         return res.status(200).json({
@@ -82,6 +82,37 @@ exports.saveCurrentLocation = async (req, res, next) => {
         } else {
             return next(createError(400, 'cannot update the location'))
         }
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            errorName: error.name,
+            message: error.message
+        })
+    }
+}
+
+
+exports.editUserDetails = async (req, res, next) => {
+    try {
+        console.log('hit user edit details');
+
+        const {name,email,gender,age} = req.body;
+
+        const profilePath = `${req.file.destination}/${req.file.filename}`;
+        if(!profilePath) return next(createError(400,'please provide the profie image'));
+
+        const updatedUser = await User.findByIdAndUpdate(req.user,{
+            name,
+            email,
+            gender,
+            age,
+            profileImage:profilePath
+        },{new: true});
+
+        if(!updatedUser) return next(createError(400,'cannot update the data'));
+
+        return res.status(200).json(updatedUser);
 
     } catch (error) {
         console.log(error);
