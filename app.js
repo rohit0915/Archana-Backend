@@ -29,6 +29,7 @@ const adminLessonRoutes = require('./routes/admin/admin.lesson.routes');
 const adminCognitiveDistortionRoutes = require('./routes/admin/admin.cognitiveDistortion.routes');
 const adminSituationRoutes = require('./routes/admin/admin.situation.routes');
 const adminThoughtDiariesRoutes = require('./routes/admin/admin.thoughtDiaries.routes');
+const adminAdditionalInfoRoutes = require('./routes/admin/admin.support.routes')
 
 
 
@@ -53,6 +54,7 @@ app.use('/api',adminCognitiveDistortionRoutes);
 app.use('/api',adminSituationRoutes);
 app.use('/api',userSituationRoutes);
 app.use('/api',adminThoughtDiariesRoutes);
+app.use('/api',adminAdditionalInfoRoutes);
 
 app.get('/',async (req,res,next)=>{
     return res.status(200).json({
@@ -75,6 +77,3 @@ app.use(function(error,req,res,next){
 })
 
 module.exports = app;
-
-
-

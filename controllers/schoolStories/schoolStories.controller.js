@@ -143,10 +143,11 @@ exports.getSchoolTimeStoryProgress = async (req, res, next) => {
         const { schoolTimeStoryId } = req.params;
         const user = await User.findById(req.user).select('schoolStoryProgress');
 
-        // console.log(user);
+        // console.log(user.schoolStoryProgress[0].schoolStoryId);
+        // return
+        const [match] = user.schoolStoryProgress.filter((item) => item.schoolStoryId._id.toString() === schoolTimeStoryId);
 
-        const [match] = user.schoolStoryProgress.filter((item) => item.schoolStoryId.toString() === schoolTimeStoryId);
-
+       
         if (match) {
             return res.status(200).json(match);
         } else {

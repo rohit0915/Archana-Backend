@@ -6,7 +6,7 @@ exports.getPhq9Result = async (req, res, next) => {
     try {
         console.log('hit get phq 9 result');
 
-        const result = await User.findById(req.user).select('phq9Result');
+        const result = await User.findById(req.user).select('phq9Result name email');
 
         if (result) {
             return res.status(200).json({
@@ -33,7 +33,7 @@ exports.updatePhq9Result = async (req, res, next) => {
         const update = {
             phq9Result: result
         }
-        const updatedScore = await User.findByIdAndUpdate(req.user, update, { new: true, runValidators: true }).select('phq9Result');
+        const updatedScore = await User.findByIdAndUpdate(req.user, update, { new: true, runValidators: true }).select('phq9Result name email');
 
         if (updatedScore) {
             return res.status(200).json({
@@ -58,7 +58,7 @@ exports.getGad7Result = async (req, res, next) => {
     try {
         console.log('hit get gad 7 result');
 
-        const result = await User.findById(req.user).select('gad7Result');
+        const result = await User.findById(req.user).select('gad7Result name email');
 
         if (result) {
             return res.status(200).json({
@@ -85,7 +85,7 @@ exports.updateGad7Result = async (req, res, next) => {
         const update = {
             gad7Result: result
         }
-        const updatedScore = await User.findByIdAndUpdate(req.user, update, { new: true, runValidators: true }).select('gad7Result');
+        const updatedScore = await User.findByIdAndUpdate(req.user, update, { new: true, runValidators: true }).select('gad7Result name email');
 
         if (updatedScore) {
             return res.status(200).json({

@@ -84,7 +84,7 @@ exports.getAllAnswerOnSchoolstoryByUser = async (req,res,next) => {
 
         const {schoolTimeStoryId,userId} = req.body;
 
-        const requiredAnswers = await lessonAnswer.find({
+        const requiredAnswers = await SchoolTimeStoryAnswer.find({
             answeredBy: userId,
             schoolTimeStory:schoolTimeStoryId
         }).populate('question');
@@ -110,7 +110,7 @@ exports.getAllAnswerOnLessonByUser = async (req,res,next) => {
 
         const {lessonId,userId} = req.body;
 
-        const requiredAnswers = await SchoolTimeStoryAnswer.find({
+        const requiredAnswers = await LessonAnswer.find({
             answeredBy: userId,
             lessonId:lessonId
         }).populate('question');
