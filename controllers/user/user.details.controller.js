@@ -64,12 +64,15 @@ exports.updateUserDetails = async (req, res, next) => {
 exports.saveCurrentLocation = async (req, res, next) => {
     try {
         console.log('hit save current location');
-        const { latLng } = req.body;
+        let { latLng } = req.body;
+        latLng = latLng.trim();
+
+        let [lat,lng] = latLng.split(',');
 
         const update = {
             currentLocation: {
                 type: 'Point',
-                coordinates: latLng
+                coordinates: [Number(lat),Number(lng)]
             }
         }
 
