@@ -59,6 +59,8 @@ exports.updateDistortionUserProgress = async (req, res, next) => {
 
         const { distortionId, percentCompleted } = req.body;
 
+        if(!distortionId) return next(createError(400,'Please provide the distortion Id'));
+
         const user = await User.findById(req.user).select('congnitiveDistortionProgress');
 
         // console.log(user);

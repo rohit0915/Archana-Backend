@@ -92,6 +92,8 @@ exports.updateLessonUserProgress = async (req, res, next) => {
 
         const { lessonId, percentCompleted } = req.body;
 
+        if(!lessonId) return next(createError(400,'Please provide the lesson Id'))
+
         const user = await User.findById(req.user).select('lessonProgress');
 
         // console.log(user);
