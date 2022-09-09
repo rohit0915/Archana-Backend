@@ -170,7 +170,7 @@ exports.completedAllLessons = async (req,res,next) => {
 
         const user = await User.findById(req.user);
 
-        if (user.numLessonCompleted >= 8 && user.allLessonCompleted === false) {
+        if (user.numLessonCompleted >= 8 || user.allLessonCompleted === false) {
             user.allLessonCompleted = true;
             await user.save({validateBeforeSave: false});
 
