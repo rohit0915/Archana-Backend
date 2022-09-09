@@ -3,16 +3,15 @@ const mongoose = require('mongoose');
 const exampleSchema = require('./example.schema');
 
 const strategySchema = new mongoose.Schema({
-    intro:{
+    intro: {
         type: String,
         default: ''
     },
-    differentStrategies: [
-        {
-            type: [exampleSchema]
-        }
-    ]
-},{
+    differentStrategies: {
+        type: [exampleSchema]
+    }
+
+}, {
     _id: false
 })
 
