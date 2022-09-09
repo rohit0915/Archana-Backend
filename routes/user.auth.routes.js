@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
         cb(null, 'public/profileImages')
     },
     filename: function (req, file, cb) {
-        cb(null, `${file.fieldname}-${req.user}.${file.originalname.split('.')[1]}`);
+        cb(null, `${file.fieldname}-${Date.now()}-${req.user}.${file.originalname.split('.')[1]}`);
     }
 })
 
