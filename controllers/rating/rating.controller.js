@@ -15,11 +15,11 @@ exports.addRating = async (req, res, next) => {
         let progress;
 
         if (alreadyExistedRating) {
-            progress = 'lesson already completed '
+            progress = await User.findById(req.user).select('numLessonCompleted').lean();
         } else {
             progress = await User.findByIdAndUpdate(req.user, {
                 $inc: { numLessonCompleted: 1 }
-            }, { new: true }).select('numLessonCompleted');
+            }, { new: true }).select('numLessonCompleted').lean();
 
         }
 
@@ -74,7 +74,7 @@ exports.addRatingToDistortion = async (req, res, next) => {
             rating,
             body
         })
-        
+
         if (!newRating) return next(createError(400, 'cannot save the cognitive distortion rating'));
 
         return res.status(200).json({
