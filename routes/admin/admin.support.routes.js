@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     }
 })
 const fileFilter = function (req, file, cb) {
-    if (file.mimetype.split('/')[0] !== 'image') {
+    if (file.mimetype.split('/')[0] !== 'video') {
         cb(createError(400, 'unsupported file type'), false);
     } else {
         cb(null, true);
@@ -21,6 +21,7 @@ const fileFilter = function (req, file, cb) {
 }
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
+// const upload = multer({ storage: storage });
 
 
 const { adminAuthMiddleware } = require('../../middlewares/jwt');
@@ -35,6 +36,6 @@ router.route('/admin/aboutus').post(adminAuthMiddleware, addAboutUs).get(adminAu
 
 router.route('/admin/contactus').post(adminAuthMiddleware, addContactUsInfo).get(adminAuthMiddleware, getContactUsInfo).patch(adminAuthMiddleware, editContactUs);
 
-router.route('/admin/banner').post(adminAuthMiddleware, upload.fields([{ name: 'banner', maxCount: 4 }]), addBanner).patch(adminAuthMiddleware,upload.fields([{ name: 'banner', maxCount: 4 }]),editBanner).get(adminAuthMiddleware,getBanner);
+router.route('/admin/banner').post(adminAuthMiddleware, upload.fields([{ name: 'banner', maxCount: 4 }]), addBanner).patch(adminAuthMiddleware, upload.fields([{ name: 'banner', maxCount: 4 }]), editBanner).get(adminAuthMiddleware, getBanner);
 
 module.exports = router;

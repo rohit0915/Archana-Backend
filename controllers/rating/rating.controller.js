@@ -59,7 +59,7 @@ exports.addRatingToDistortion = async (req, res, next) => {
         let progress;
 
         if (alreadyExistedRating) {
-            progress = 'cognitive distortion already completed '
+            progress = await User.findById(req.user).select('numCognitiveDistortionCompleted').lean()
         } else {
             progress = await User.findByIdAndUpdate(req.user, {
                 $inc: { numCognitiveDistortionCompleted: 1 }

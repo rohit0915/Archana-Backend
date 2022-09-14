@@ -369,7 +369,7 @@ exports.addBanner = async (req, res, next) => {
         })
 
         const newBanner = await Banner.create({
-            images: pathArray
+            videos: pathArray
         });
 
         if (!newBanner) return next(createError(400, 'cannot add the new banner'));
@@ -397,7 +397,7 @@ exports.editBanner = async (req, res, next) => {
         })
 
         const updated = await Banner.findOneAndUpdate({}, {
-            images: pathArray
+            videos: pathArray
         }, { new: true });
 
         if (!updated) return next(createError(400, 'cannot update the banner'));
